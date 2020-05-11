@@ -1,0 +1,42 @@
+Login
+1.- Usuario,contraseña, boton enviar  ---ok
+2.- Ingresar con facebook
+3.- ingresar goggle
+4.-Opcion registrar   ---ok
+
+Registro
+1.-Formulario de datos  ---ok
+
+Principal
+1.-View Drawer  ---ok
+2.-Menu: Alertas,Avisos,Grupos.  ---ok
+
+----------------------------------------------------------------
+Grupos
+1.-Crear grupo  ---ok
+2.-Buscar grupo  ---ok
+3.-Ver miembros
+
+Qr
+31-Qr (del id del grupo), si ya se creo un grupo  ---ok
+
+Crear grupo
+1.-Formularios de datos del grupo  ---ok
+2.-opcion para invitar usuarios  
+
+Buscar grupo
+1.- buscar un grupo ya creado en base al nombre
+----------------------------------------------------------------
+Avisos
+1.-Crear alerta--->ACtivyty Formulario alerta
+2.-Lista de alertas
+3.-Alerta(Activity)-->Activity ver alerta
+4.-Ver avisos
+
+
+----------------------------------------------------------------
+
+Publicidad
+
+Todavia no se en donde.
+
