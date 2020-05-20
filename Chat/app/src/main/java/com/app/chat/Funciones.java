@@ -1,11 +1,18 @@
 package com.app.chat;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -15,6 +22,7 @@ import java.util.UUID;
 
 public class Funciones {
     Context context;
+    byte[] buffer ;
     public Funciones(Context context) {
         this.context = context;
     }
@@ -103,6 +111,34 @@ public class Funciones {
         if(BuildConfig.DEBUG){
             Log.i(tag,men);
         }
+    }
+
+    public String Fileto64(String filePath){
+        String base64 = "";
+        try {
+            File file = new File(filePath);
+            byte[] buffer = new byte[(int) file.length() + 100];
+            int length = new FileInputStream(file).read(buffer);
+            base64 = Base64.encodeToString(buffer, 0, length,
+                    Base64.DEFAULT);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return base64;
+    }
+    public String TamFile(String filePath){
+        String tam = "";
+        try {
+            File file = new File(filePath);
+            buffer = new byte[(int) file.length() + 100];
+            int length = new FileInputStream(file).read(buffer);
+            tam= length +"";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tam;
     }
 /*
     public boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
