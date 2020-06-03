@@ -1,11 +1,17 @@
 package com.app.chat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
+import android.os.Vibrator;
+import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,25 +22,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
 
 public class Funciones {
     Context context;
-    byte[] buffer ;
+    byte[] buffer;
+
     public Funciones(Context context) {
         this.context = context;
     }
 
 
-    public String GetUIID(){
-        return UUID.randomUUID().toString().replace("-","");
+    public String GetUIID() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public String GetUrl(){
-        String URL="";
-        URL=context.getString(R.string.url);
+    public String GetUrl() {
+        String URL = "";
+        URL = context.getString(R.string.url);
         return URL;
     }
 
@@ -47,7 +55,7 @@ public class Funciones {
 
         try {
 
-            Logo("Conexion","Enviando: " + url + "    " + data);
+            Logo("Conexion", "Enviando: " + url + "    " + data);
 
             //Create a URL object holding our url
             URL myUrl = new URL(url);
@@ -106,49 +114,45 @@ public class Funciones {
 
     }
 
-    public void Logo(String tag,String men)
-    {
-        if(BuildConfig.DEBUG){
-            Log.i(tag,men);
+    public void Logo(String tag, String men) {
+        if (BuildConfig.DEBUG) {
+            Log.i(tag, men);
         }
     }
 
-    public String Fileto64(String filePath){
-        String base64 = "";
-        try {
-            File file = new File(filePath);
-            byte[] buffer = new byte[(int) file.length() + 100];
-            int length = new FileInputStream(file).read(buffer);
-            base64 = Base64.encodeToString(buffer, 0, length,
-                    Base64.DEFAULT);
 
-        } catch (IOException e) {
+
+    public String GetID() {
+        String id = "";
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            return id;
+        }
+        id = telephonyManager.getDeviceId();
+        return id;
+    }
+
+    public String ToBase64(String toString) {
+        byte[] data;
+        try {
+            data = toString.getBytes("UTF-8");
+            toString = Base64.encodeToString(data, Base64.DEFAULT);
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return base64;
-    }
-    public String TamFile(String filePath){
-        String tam = "";
-        try {
-            File file = new File(filePath);
-            buffer = new byte[(int) file.length() + 100];
-            int length = new FileInputStream(file).read(buffer);
-            tam= length +"";
 
-        } catch (Exception e) {
+
+        return toString.replace("\n","");
+    }
+    public String BaseToString(String str){
+        byte[] data = Base64.decode(str, Base64.DEFAULT);
+        try {
+            str = new String(data, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return tam;
-    }
-/*
-    public boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
+        return str;
     }
 
     public void Vibrar(long[] pattern) {
@@ -162,6 +166,48 @@ public class Funciones {
         long[] pattern = {0, 70};
         return pattern;
     }
+
+
+/*
+
+public String Fileto64(String filePath) {
+        String base64 = "";
+        try {
+            File file = new File(filePath);
+            byte[] buffer = new byte[(int) file.length() + 100];
+            int length = new FileInputStream(file).read(buffer);
+            base64 = Base64.encodeToString(buffer, 0, length,
+                    Base64.DEFAULT);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return base64;
+    }
+
+    public String TamFile(String filePath) {
+        String tam = "";
+        try {
+            File file = new File(filePath);
+            buffer = new byte[(int) file.length() + 100];
+            int length = new FileInputStream(file).read(buffer);
+            tam = length + "";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tam;
+    }
+    public boolean isMyServiceRunning(Class<?> serviceClass, Context context) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     public long[] VibrarError() {
@@ -781,18 +827,7 @@ public class Funciones {
         return str;
     }
 
-    public String ToBase64(String toString) {
-        byte[] data;
-        try {
-            data = toString.getBytes("UTF-8");
-            toString = Base64.encodeToString(data, Base64.DEFAULT);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-
-        return toString.replace("\n","");
-    }*/
+    */
 }
 
 

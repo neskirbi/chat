@@ -21,7 +21,7 @@ public class Portada extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
-                Intent intent = new Intent(Portada.this, Categorias.class);
+                Intent intent = new Intent(Portada.this, Nikname.class);
                 startActivity(intent);
                 finish();
             };

@@ -14,8 +14,17 @@
 
     <string name="home_second">Home Second</string>
 
+    <string name="id_banner">ca-app-pub-9864387520697583/8485389985</string>
+    <!--El de abajo es el de prueba cambiar a id_banner_p  para la version de produccion debe tener la _p el de abajo-->
+    <string name="id_banner_p">ca-app-pub-3940256099942544/6300978111</string>
+
 
     <string name="url">http://app-lab.com.mx/Chat/</string>
     <string name="url_GetCategorias">api/GetCategorias</string>
     <string name="url_GetSalas">api/GetSalas</string>
+
+    <string name="url_GetChat">api/GetChat</string>
+    <string name="url_SetChat">api/SetChat</string>
+
+
 </resources>

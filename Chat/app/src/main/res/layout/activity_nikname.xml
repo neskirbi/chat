@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nikname">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical|center_horizontal">
+
+        <EditText
+            android:id="@+id/nombre"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:textSize="20dp"
+            android:maxLength="20"
+            android:singleLine="true"
+            />
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Enviar"
+            android:textColor="#fff"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/boton_azul"/>
+
+
+    </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/id_banner"></com.google.android.gms.ads.AdView>
+
+</FrameLayout>

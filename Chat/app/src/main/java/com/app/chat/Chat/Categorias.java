@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.app.chat.Funciones;
 import com.app.chat.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +49,7 @@ public class Categorias extends AppCompatActivity {
                     public void onClick(View v) {
 
                         try {
-                            startActivity(new Intent(context, Salas.class).putExtra("id_categoria",categoriaj.get("id_categoria").toString()));
+                            startActivity(new Intent(context, Salas.class).putExtra("id_categoria",categoriaj.get("id_categoria").toString()).putExtra("nombre",getIntent().getExtras().get("nombre").toString()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -61,6 +63,10 @@ public class Categorias extends AppCompatActivity {
         }
 
 
+        AdView m = findViewById(R.id.banner);
+        AdRequest adRequest = null;
+        adRequest=new AdRequest.Builder().build();
+        m.loadAd(adRequest);
 
     }
 
