@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.app.chat.Chat.Categorias;
+
 public class Portada extends AppCompatActivity {
 
     @Override
@@ -19,7 +21,7 @@ public class Portada extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
-                Intent intent = new Intent(Portada.this, Principal.class);
+                Intent intent = new Intent(Portada.this, Categorias.class);
                 startActivity(intent);
                 finish();
             };
