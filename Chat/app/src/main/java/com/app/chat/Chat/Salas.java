@@ -45,6 +45,8 @@ public class Salas extends AppCompatActivity {
                 View item = inflater.inflate(R.layout.lista, null);
                 TextView titulo = item.findViewById(R.id.titulo);
                 titulo.setText(salasj.get("sala").toString());
+                TextView numero = item.findViewById(R.id.numero);
+                numero.setText("("+salasj.get("numero").toString()+")");
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

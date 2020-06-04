@@ -44,6 +44,9 @@ public class Categorias extends AppCompatActivity {
                 View item = inflater.inflate(R.layout.lista, null);
                 TextView titulo = item.findViewById(R.id.titulo);
                 titulo.setText(categoriaj.get("categoria").toString());
+                TextView numero = item.findViewById(R.id.numero);
+                numero.setText("("+categoriaj.get("numero").toString()+")");
+
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

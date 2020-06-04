@@ -3,6 +3,7 @@ package com.app.chat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -20,17 +21,22 @@ public class Nikname extends AppCompatActivity {
 
     EditText nombre;
     Button enviar;
+    Funciones funciones;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nikname);
         setTitle("Nombre");
+        context=this;
+        funciones=new Funciones(context);
         nombre=findViewById(R.id.nombre);
         enviar=findViewById(R.id.enviar);
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                funciones.Vibrar(funciones.VibrarPush());
                 if(PedirPermiso()) {
                     if (nombre.getText().toString().replace(" ", "").length() != 0 && !nombre.getText().toString().contains(" ")) {
                         startActivity(new Intent(getApplicationContext(), Categorias.class).putExtra("nombre", nombre.getText().toString()));
