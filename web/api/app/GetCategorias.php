@@ -2,7 +2,7 @@
 require_once"funciones/funciones.php";
 include "app/Conexion.php";
 
-class GetAvisos{
+class GetCategorias{
 
 	
 	private $mysqli=null;
@@ -10,16 +10,17 @@ class GetAvisos{
 	public function __construct(){
 		$mysql=new Conexion();
 		$this->mysqli=$mysql->Conectar();
+		//$this->mysqli->set_charset('utf8mb4');
 		$this->Get();
 	}
 
 	private function Get(){
 
+		$ini=Inyeccion(param('ini'),$this->mysqli);
 		$id_grupo=Inyeccion(param('id_grupo'),$this->mysqli);
 		
-		$sql="SELECT * from avisos as avi 
-		join usuarios as usu on usu.id_usuario=avi.id_usuario
-		where avi.id_grupo ='$id_grupo' order by avi.fecha desc limit 10 ";
+		
+		$sql="SELECT * from categorias order by categoria asc";
 		
 		GetRowsJson($this->mysqli->query($sql));	
 		
